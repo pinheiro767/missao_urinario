@@ -1,35 +1,44 @@
-MISSÃO URINÁRIA — A JORNADA ANATÔMICA
+MISSÃO URINÁRIA — VERSÃO CORRIGIDA (PASTA DE IMAGENS)
 Universidade Estadual de Maringá · Profª Dra. Cláudia Pinheiro
 
-COMO ABRIR
-1. Descompacte o arquivo ZIP preservando a pasta assets.
-2. Abra index.html em Chrome, Safari, Edge ou Firefox. O jogo funciona localmente; alguns recursos de instalação offline exigem um servidor seguro.
-3. Use as setas do teclado (ou A e D) para andar e Espaço / seta para cima (ou W) para saltar. No celular, utilize os botões na parte inferior.
+IMPORTANTE: index.html e a pasta imagens devem ficar na MESMA pasta.
 
-COMO PUBLICAR E INSTALAR COMO PWA
-- Envie todos os arquivos e a pasta assets para a raiz de um repositório GitHub Pages.
-- Abra a URL HTTPS do site publicado em seu navegador.
-- Android: menu do navegador > Instalar app / Adicionar à tela inicial.
-- iPhone/iPad: Safari > Compartilhar > Adicionar à Tela de Início.
-- Após carregar todos os recursos uma vez, o app poderá funcionar offline, graças ao service worker.
+ESTRUTURA CORRETA (não altere os nomes):
+Missao_Urinaria_CORRIGIDA/
+    index.html              <- ABRA ESTE ARQUIVO
+    app.js
+    style.css
+    manifest.webmanifest
+    service-worker.js
+    icon-192.png
+    icon-512.png
+    imagens/                <- TODAS AS IMAGENS DO JOGO
+        uro-idle.webp
+        uro-walk-0.webp ... uro-walk-7.webp
+        uro-jump-0.webp ... uro-jump-5.webp
+        uro-collect-0.webp ... uro-collect-5.webp
+        cenario-calices.webp
+        cenario-ureter.webp
+        cenario-bexiga.webp
+        portal.webp
+        calculo.webp
+        gota.webp
+        [todas as demais imagens anatômicas]
 
-REGRAS
-- Quatro fases, 12 desafios nos portais mais o 13º desafio na saída.
-- Salte os obstáculos, recolha gotas brilhantes e resolva os portais para avançar.
-- Acertos na primeira tentativa geram mais pontos e determinam a medalha final.
-- Bronze: conclusão; Prata: pelo menos 60% de acertos na primeira tentativa; Ouro: pelo menos 85%.
-- Ao terminar: confetes, efeitos sonoros, medalha, certificado imprimível/salvável como PDF e relatório CSV.
-- O progresso é salvo no navegador até a conclusão.
+COMO JOGAR LOCALMENTE
+1. Extraia/descompacte TODO O ZIP (não abra o index.html dentro do ZIP).
+2. Abra index.html no navegador. Mantenha app.js, style.css e a pasta imagens juntos.
+3. Use os botões de toque no celular ou setas e espaço no teclado.
 
-SOM E ACESSIBILIDADE
-- Música e efeitos gerados localmente pelo navegador, sem precisar baixar áudios externos.
-- Botão ♪ ativa ou silencia o som. Botão de narração ativa a leitura das questões (quando o navegador suportar).
-- Suporte a teclado, controles de toque, mensagens textuais e preferência por movimento reduzido.
+ALTERNATIVA SEM PASTAS
+Use Missao_Urinaria_Jogar_Sem_Pastas_CORRIGIDO.html. Todos os recursos ficam dentro de um arquivo HTML; ótimo para testar em um navegador que abre arquivos HTML locais. Essa versão NÃO instala como PWA.
 
-ASSETS
-Este pacote utiliza as imagens anatômicas e os sprites compartilhados na conversa, adaptados e otimizados para o aplicativo. Imagens são usadas como representação didática estilizada; detalhes esquemáticos devem ser lidos como recursos visuais do jogo, não como uma ilustração clínica diagnóstica.
+COMO INSTALAR COMO APLICATIVO
+Suba os arquivos soltos e a pasta imagens para a raiz de um repositório GitHub Pages.
+Abra a página HTTPS no Safari ou Chrome; escolha "Adicionar à Tela de Início" / "Instalar app".
+Quando carregado e cacheado uma vez, o jogo também funciona offline.
 
-DÚVIDAS FREQUENTES
-- Tela preta? Confirme que a pasta assets ficou ao lado de index.html.
-- Não aparece 'Instalar'? A instalação PWA exige abrir a versão publicada via HTTPS (ou localhost).
-- Som não toca antes de clicar? Por segurança, navegadores só permitem iniciar áudio após o primeiro toque do usuário.
+INCLUÍDOS: 4 fases; 13 desafios; caminhada, salto e coleta; som gerado no navegador; confetes, medalhas; relatório CSV; impressão de certificado em PDF.
+
+SOM: navegadores exigem um primeiro toque no botão Iniciar para liberar áudio.
+Se seu aparelho bloquear arquivos HTML locais, publique no GitHub Pages ou teste em Chrome/Firefox.
