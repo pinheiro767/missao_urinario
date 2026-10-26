@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#091d32">
+  <meta name="description" content="Missão Urinária: aventura anatômica com sprites, desafios, sons e medalhas — Universidade Estadual de Maringá.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Missão Urinária">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Missão Urinária — A Jornada da Urina | UEM</title>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><img src="icon-192.png" alt="" width="42" height="42"><div><strong>MISSÃO URINÁRIA</strong><small>A jornada anatômica · UEM</small></div></div>
+      <div class="header-actions">
+        <button id="musicBtn" class="icon-button" aria-label="Desligar som" title="Som ligado">♫</button>
+        <button id="voiceBtn" class="icon-button" aria-label="Ativar narração" title="Narração desligada">♬̸</button>
+        <button id="pauseBtn" class="icon-button" aria-label="Pausar" title="Pausar">Ⅱ</button>
+        <button id="fullBtn" class="icon-button" aria-label="Tela cheia" title="Tela cheia">⛶</button>
+      </div>
+    </header>
+    <main>
+      <section class="game-wrap" aria-label="Jogo de plataforma sobre Anatomia Humana">
+        <div class="scene" id="scene">
+          <canvas id="gameCanvas" width="960" height="540" role="img" aria-label="Jogo visual: explorador percorre estruturas do sistema urinário, recolhe gotas, salta obstáculos e responde a desafios."></canvas>
+          <div class="hud" id="hud">
+            <div class="hud-left"><span class="hud-badge" id="stageBadge">01 / 04</span><div class="hud-stage"><strong id="stageName">O interior do rim</strong><div class="stage-track"><div id="stageProgress" class="stage-progress"></div></div></div></div>
+            <div class="hud-right"><span title="Gotas coletadas">💧 <b id="dropsNum">0</b></span><span title="Pontuação">✦ <b id="scoreNum">0</b></span><span title="Energia">♥ <b id="heartsNum">3</b></span></div>
+          </div>
+          <div id="gameToast" class="game-toast" aria-live="polite"></div>
+          <div id="sceneHint" class="scene-hint">Use ← → e Espaço para explorar</div>
+          <div id="startScreen" class="overlay splash">
+            <div class="splash-art" aria-hidden="true"><img class="splash-kidney" src="assets/kidney.webp" alt=""><img class="splash-explorer" src="assets/uro-idle.webp" alt=""></div>
+            <div class="splash-copy"><span class="eyebrow">UNIVERSIDADE ESTADUAL DE MARINGÁ</span><h1>MISSÃO <em>URINÁRIA</em></h1><p class="lead">Uma aventura por dentro do sistema urinário</p><p>Caminhe, salte cálculos, explore os cálices e desbloqueie portais acertando desafios de Anatomia Humana.</p>
+              <div class="splash-chips"><span>4 fases</span><span>13 desafios</span><span>Medalhas e confetes</span></div>
+              <div class="action-row"><button id="startBtn" class="btn btn-primary">▶ Iniciar aventura</button><button id="continueBtn" class="btn btn-ghost" hidden>↪ Continuar</button></div>
+              <div class="splash-credit">Profª Dra. Cláudia Pinheiro · Ciências Biológicas</div>
+            </div>
+          </div>
+          <div id="pauseOverlay" class="overlay simple-overlay hidden" role="dialog" aria-label="Jogo pausado" aria-modal="true"><div class="modal-card compact"><span class="modal-icon">⏸</span><h2>Pausa anatômica</h2><p>Seu progresso fica salvo neste dispositivo.</p><button id="resumeBtn" class="btn btn-primary">Continuar exploração</button><button id="restartBtn" class="btn btn-ghost">Recomeçar aventura</button></div></div>
+          <div id="challengeOverlay" class="overlay modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="challengeTitle"><div class="modal-card quiz-card"><div class="modal-top"><span class="quiz-category" id="challengeTag">PORTAL ANATÔMICO</span><span class="quiz-award">✦ +120 pontos</span></div><h2 id="challengeTitle">Desafio</h2><p id="challengeSubtitle" class="quiz-subtitle"></p><div id="quizOptions" class="quiz-options"></div><div id="sequenceChoice" class="sequence-area hidden"><p class="small-label">TOQUE NAS PEÇAS NA ORDEM CORRETA</p><div id="sequenceSlots" class="sequence-slots"></div><div id="sequencePieces" class="sequence-pieces"></div><button id="clearSequenceBtn" class="small-action">↶ Limpar sequência</button></div><p id="feedback" class="feedback" role="status" aria-live="polite"></p><button id="quizContinueBtn" class="btn btn-primary full hidden">✓ Continuar jornada</button></div></div>
+          <div id="stageOverlay" class="overlay modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="stageCompleteTitle"><div class="modal-card level-clear"><div class="big-star">★</div><span class="eyebrow">PORTAL CONCLUÍDO</span><h2 id="stageCompleteTitle">Fase desbloqueada!</h2><p id="stageCompleteDesc">Muito bem!</p><div class="level-stats"><div><strong id="stageScoreValue">0</strong><small>pontos</small></div><div><strong id="stageDropsValue">0</strong><small>gotas</small></div></div><button id="nextStageBtn" class="btn btn-primary full">Próxima fase →</button></div></div>
+          <div id="finishOverlay" class="overlay modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="finishTitle"><div class="modal-card finish-card"><span class="eyebrow">MISSÃO CUMPRIDA!</span><div class="medal-illustration" id="medalIcon">🥇</div><h2 id="finishTitle">Medalha de Ouro</h2><p class="finish-subtitle">Você concluiu a jornada da urina!</p><div class="finish-numbers"><div><strong id="finalScore">0</strong><small>PONTOS</small></div><div><strong id="finalAccuracy">0%</strong><small>ACERTOS DE PRIMEIRA</small></div><div><strong id="finalDrops">0</strong><small>GOTAS</small></div></div><p id="finalMessage" class="final-message"></p><label class="student-name-label" for="studentName">Nome do(a) estudante para o certificado (opcional)</label><input id="studentName" class="student-name-input" type="text" maxlength="100" placeholder="Digite seu nome completo" autocomplete="name"><div class="finish-actions"><button class="btn btn-primary" id="certificateBtn">🏅 Certificado / PDF</button><button class="btn btn-ghost" id="csvBtn">↓ Relatório CSV</button><button class="btn btn-ghost" id="playAgainBtn">↻ Jogar novamente</button></div></div></div>
+          <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+        </div>
+        <div class="controls-bar">
+          <div class="controls-left"><button id="leftBtn" class="control-btn arrow" aria-label="Mover para esquerda">←</button><button id="rightBtn" class="control-btn arrow" aria-label="Mover para direita">→</button><span class="control-hint">MOVER</span></div>
+          <div class="controls-note">Encontre os <strong>portais luminosos</strong> e resolva os desafios para avançar.</div>
+          <div class="controls-right"><span class="control-hint">PULAR</span><button id="jumpBtn" class="control-btn jump" aria-label="Pular">↑ <span>SALTAR</span></button></div>
+        </div>
+      </section>
+      <div class="footer-line"><span>ANATOMIA HUMANA · UEM</span><span>Funciona com teclado e controles por toque · Progresso salvo automaticamente</span></div>
+      <p class="landscape-note">📱 Para aproveitar melhor os sprites no celular, gire o aparelho para a horizontal.</p>
+    </main>
+  </div>
+  <section id="printCertificate" class="print-certificate" aria-hidden="true"><div class="print-border"><div class="cert-icon">🏅</div><h1>CERTIFICADO DE CONCLUSÃO</h1><h2>Missão Urinária — A Jornada Anatômica</h2><p>Certificamos que o(a) participante concluiu o jogo educativo de Anatomia Humana do Sistema Urinário, demonstrando conhecimentos sobre rins, cálices renais, pelve renal, ureteres, bexiga urinária e uretra.</p><p id="certPerson" class="cert-person"></p><div id="certMedal" class="cert-medal">Medalha de Ouro</div><p id="certStats">Pontuação:</p><div class="cert-foot">Universidade Estadual de Maringá · Profª Dra. Cláudia Pinheiro<br><span id="certDate"></span></div></div></section>
+  <script src="app.js" defer></script>
+</body>
+</html>
