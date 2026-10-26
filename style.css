@@ -5,3 +5,18 @@
 .student-name-label{display:block;text-align:left;color:#b3dcd8;font-size:11px;font-weight:750;margin:7px 0 5px}.student-name-input{width:100%;border:1px solid #65a7ad88;border-radius:11px;background:#092638;color:#eefdf9;padding:10px 12px;font:inherit;font-size:13px;margin-bottom:12px}.student-name-input:focus-visible{outline:2px solid #8ef3d8}.cert-person{font-weight:700;color:#253f55!important;margin:14px auto!important}@media(max-height:530px) and (orientation:landscape){.student-name-label{font-size:9px}.student-name-input{padding:5px;margin-bottom:4px}}
 
 @media print{@page{size:A4;margin:10mm}.print-certificate{min-height:0!important;padding:0!important}.print-border{min-height:258mm!important;padding:12mm!important}}
+
+/* v3 — Controles rápidos embutidos no cenário, inclusive fullscreen */
+.scene .controls-bar{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:10px clamp(10px,2vw,22px) calc(12px + env(safe-area-inset-bottom, 0px));background:linear-gradient(to top,rgba(6,19,29,.61),rgba(6,19,29,0));pointer-events:none;user-select:none;-webkit-user-select:none;touch-action:none}
+.scene .controls-left,.scene .controls-right{display:flex;align-items:center;gap:clamp(7px,1.3vw,14px);pointer-events:auto}
+.scene .control-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:clamp(58px,8vw,84px);min-height:clamp(58px,8vw,76px);padding:5px 10px;border:2px solid #8ef3e0b3;border-radius:22px;font-size:clamp(26px,3vw,34px);line-height:1;background:linear-gradient(145deg,#1b6b79ed,#18445bf0);box-shadow:0 5px 20px #00151bbd,inset 0 1px 0 #ffffff50;touch-action:none;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.scene .control-btn span{display:block;font-size:11px;line-height:1.1;letter-spacing:.035em;font-weight:900}
+.scene .control-btn.pressed{transform:scale(.94);background:linear-gradient(145deg,#4ce7c6,#27797a);box-shadow:0 1px 14px #00ffe09c;color:#082936}
+.scene .control-btn.jump{min-width:clamp(65px,9vw,94px);border-color:#ffd39dbd;background:linear-gradient(135deg,#a35f80ee,#674061ee)}
+.scene .control-btn.speed{min-width:clamp(55px,7vw,72px);background:linear-gradient(135deg,#594867ed,#3b4269ed);border-color:#b5aad6ad;font-size:24px}
+.scene .control-btn.speed.fast{border-color:#fff5a3;background:linear-gradient(145deg,#91602eef,#664128f5);box-shadow:0 0 17px #ffc95c44,0 5px 18px #030b18bf}
+.scene:has(#startScreen:not(.hidden)) .controls-bar{visibility:hidden}
+.scene:fullscreen .controls-bar{padding-left:3vw;padding-right:3vw;bottom:0}
+@media(max-width:700px){.scene .controls-bar{padding:5px 9px calc(7px + env(safe-area-inset-bottom, 0px))}.scene .controls-left,.scene .controls-right{gap:8px}.scene .control-btn{min-width:65px;min-height:64px;border-radius:19px;font-size:27px}.scene .control-btn.speed{min-width:57px}.scene .control-btn.jump{min-width:72px}.scene .control-btn span{font-size:10px}}
+@media(max-width:380px){.scene .controls-left,.scene .controls-right{gap:5px}.scene .control-btn{min-width:56px;min-height:57px;padding:4px}.scene .control-btn.jump{min-width:62px}.scene .control-btn.speed{min-width:53px}}
+@media(max-height:450px) and (orientation:landscape){.scene .controls-bar{padding:3px 13px 4px}.scene .control-btn{min-width:60px;min-height:51px;border-radius:14px;font-size:22px}.scene .control-btn span{font-size:9px}.scene .control-btn.jump{min-width:66px}}

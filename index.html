@@ -35,7 +35,7 @@
             <div class="hud-right"><span title="Gotas coletadas">💧 <b id="dropsNum">0</b></span><span title="Pontuação">✦ <b id="scoreNum">0</b></span><span title="Energia">♥ <b id="heartsNum">3</b></span></div>
           </div>
           <div id="gameToast" class="game-toast" aria-live="polite"></div>
-          <div id="sceneHint" class="scene-hint">Use ← → e Espaço para explorar</div>
+          <div id="sceneHint" class="scene-hint">Segure ◀ ou ▶ para correr · ↥ para saltar · ⚡ velocidade 2×</div>
           <div id="startScreen" class="overlay splash">
             <div class="splash-art" aria-hidden="true"><img class="splash-kidney" src="imagens/kidney.webp" alt=""><img class="splash-explorer" src="imagens/uro-idle.webp" alt=""></div>
             <div class="splash-copy"><span class="eyebrow">UNIVERSIDADE ESTADUAL DE MARINGÁ</span><h1>MISSÃO <em>URINÁRIA</em></h1><p class="lead">Uma aventura por dentro do sistema urinário</p><p>Caminhe, salte cálculos, explore os cálices e desbloqueie portais acertando desafios de Anatomia Humana.</p>
@@ -49,11 +49,17 @@
           <div id="stageOverlay" class="overlay modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="stageCompleteTitle"><div class="modal-card level-clear"><div class="big-star">★</div><span class="eyebrow">PORTAL CONCLUÍDO</span><h2 id="stageCompleteTitle">Fase desbloqueada!</h2><p id="stageCompleteDesc">Muito bem!</p><div class="level-stats"><div><strong id="stageScoreValue">0</strong><small>pontos</small></div><div><strong id="stageDropsValue">0</strong><small>gotas</small></div></div><button id="nextStageBtn" class="btn btn-primary full">Próxima fase →</button></div></div>
           <div id="finishOverlay" class="overlay modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="finishTitle"><div class="modal-card finish-card"><span class="eyebrow">MISSÃO CUMPRIDA!</span><div class="medal-illustration" id="medalIcon">🥇</div><h2 id="finishTitle">Medalha de Ouro</h2><p class="finish-subtitle">Você concluiu a jornada da urina!</p><div class="finish-numbers"><div><strong id="finalScore">0</strong><small>PONTOS</small></div><div><strong id="finalAccuracy">0%</strong><small>ACERTOS DE PRIMEIRA</small></div><div><strong id="finalDrops">0</strong><small>GOTAS</small></div></div><p id="finalMessage" class="final-message"></p><label class="student-name-label" for="studentName">Nome do(a) estudante para o certificado (opcional)</label><input id="studentName" class="student-name-input" type="text" maxlength="100" placeholder="Digite seu nome completo" autocomplete="name"><div class="finish-actions"><button class="btn btn-primary" id="certificateBtn">🏅 Certificado / PDF</button><button class="btn btn-ghost" id="csvBtn">↓ Relatório CSV</button><button class="btn btn-ghost" id="playAgainBtn">↻ Jogar novamente</button></div></div></div>
           <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
-        </div>
-        <div class="controls-bar">
-          <div class="controls-left"><button id="leftBtn" class="control-btn arrow" aria-label="Mover para esquerda">←</button><button id="rightBtn" class="control-btn arrow" aria-label="Mover para direita">→</button><span class="control-hint">MOVER</span></div>
-          <div class="controls-note">Encontre os <strong>portais luminosos</strong> e resolva os desafios para avançar.</div>
-          <div class="controls-right"><span class="control-hint">PULAR</span><button id="jumpBtn" class="control-btn jump" aria-label="Pular">↑ <span>SALTAR</span></button></div>
+          <!-- Controles sobre o cenário: permanecem visíveis até em tela cheia. -->
+          <div class="controls-bar" role="group" aria-label="Controles rápidos do explorador">
+            <div class="controls-left">
+              <button id="leftBtn" class="control-btn arrow" type="button" aria-label="Andar para trás: segure para continuar">◀<span>TRÁS</span></button>
+              <button id="rightBtn" class="control-btn arrow" type="button" aria-label="Andar para frente: segure para continuar">▶<span>FRENTE</span></button>
+            </div>
+            <div class="controls-right">
+              <button id="speedBtn" class="control-btn speed fast" type="button" aria-label="Velocidade: 2 vezes" aria-pressed="true" title="Alternar entre velocidade normal e rápida">⚡<span id="speedLabel">2×</span></button>
+              <button id="jumpBtn" class="control-btn jump" type="button" aria-label="Pular enquanto corre">↥<span>PULAR</span></button>
+            </div>
+          </div>
         </div>
       </section>
       <div class="footer-line"><span>ANATOMIA HUMANA · UEM</span><span>Funciona com teclado e controles por toque · Progresso salvo automaticamente</span></div>
